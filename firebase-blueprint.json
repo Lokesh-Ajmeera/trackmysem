@@ -1,0 +1,50 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "B.Tech Student profile containing registration info, subjects list, timetable, and log records.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "rollNo": { "type": "string" },
+        "email": { "type": "string" },
+        "branch": { "type": "string" },
+        "semester": { "type": "integer" },
+        "year": { "type": "string" },
+        "phoneNumber": { "type": "string" },
+        "section": { "type": "string" },
+        "batch": { "type": "string" },
+        "gpa": { "type": "number" },
+        "avatarUrl": { "type": "string" },
+        "subjects": { "type": "array" },
+        "timetable": { "type": "array" },
+        "notifications": { "type": "array" },
+        "logs": { "type": "array" }
+      },
+      "required": ["uid", "email", "name", "rollNo"]
+    },
+    "OTP": {
+      "title": "Recovery OTP",
+      "description": "One-Time Passcode for password recovery requests.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "passcode": { "type": "string" },
+        "expiresAt": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["email", "passcode", "expiresAt", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Collection of student profiles indexed by UIDs."
+    },
+    "/otps/{email}": {
+      "schema": "OTP",
+      "description": "Collection of temporary passcodes indexed by normalized email addresses."
+    }
+  }
+}

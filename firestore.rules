@@ -1,0 +1,31 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global Safety Net (deny all by default)
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Rules for Users collection
+    match /users/{userId} {
+      // Anyone can read (get/list) to check if a student account exists
+      allow get, list: if true; 
+      
+      // Allow creation of user profile
+      allow create: if true;
+      
+      // Allow update (necessary for unauthenticated password resets and profile edits)
+      allow update: if true; 
+      
+      // Only owner can delete
+      allow delete: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Rules for OTPs (otps) collection
+    match /otps/{email} {
+      // Allow full access for generation, verification, and cleanup
+      allow read, write, delete: if true;
+    }
+  }
+}

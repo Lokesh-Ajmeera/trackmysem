@@ -1,0 +1,8 @@
+{
+  "name": "TrackMySem",
+  "description": "A premium glassmorphism B.Tech student attendance portal for Indian Institute of Information Technology Tiruchirappalli with timetable tracking, simulation, predictive analytics, and low-attendance alerts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
